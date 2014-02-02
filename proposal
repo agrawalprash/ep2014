@@ -2,7 +2,7 @@
 
 ## Abstract
 
-Jigna is an HTML-based UI-toolkit for Python models. It provides a seamless two-way data binding between the Python and Javascript worlds.  This allows one to create models in Python and views using the powerful technologies of HTML, CSS and Javascript. The Jigna view can be rendered in an in-process Qt widget or on a browser.
+Jigna is an HTML-based UI tool for Python models. It provides a seamless two-way data binding between the Python and Javascript worlds.  This allows one to create models in Python and views using the powerful technologies of HTML, CSS and Javascript. The Jigna view can be rendered in an in-process Qt widget or on a browser.
 
 ## Description
 
@@ -43,9 +43,9 @@ This is nice for several reasons:
 
 * The view code is declarative and hence easy to read.
 * The binding between the model and the view is automatic.
-* HTML/CSS/JS today is very powerful
-    - there are many JS libraries for a variety of tasks
-    - CSS styling allows us to build customized UIs as opposed to widget based toolkits like Qt and wxPython
+* HTML/CSS/JS today is very powerful 
+    * there are many JS libraries for a variety of tasks
+    * your development team doesn't have to worry about creating widgets or the limitations in the widget set of a particular toolkit as there are thousands of developers worldwide creating awesome CSS/JS widgets for you.
 * It is much easier to find people who know HTML/CSS/JS than Qt or a native toolkit.
 * There is a complete separation of view from the model and this allows us to hand off the entire UI to an HTML/CSS/JS guru.
 
@@ -67,7 +67,7 @@ It turns out that Qt's [QtWebkit][3] browser has support for in-process communic
 
 The other nice piece in this story is AngularJS, which provides good model-view separation between its HTML template and the corresponding Javascript model. AngularJS has great support for two-way data binding between the template and the model, which keeps the template expressions always in sync with the JS model. This makes sure that the HTML you need to write is terse and simple.
 
-We combine these two pieces to create a lazy-loaded Python-JS bridge which provides us the two-way data binding between the Python model and the HTML view. We use Traits to write models in Python. Traits lets us define attributes of an object statically, and supports notifications when the attributes change. Jigna integrates well with traits so that these notifications automatically update the UI. Similarly, user inputs on the UI change model attributes, call public methods on the model as well.
+We combine these two pieces to create a lazy-loaded Python-JS bridge which provides us the two-way data binding between the Python model and the HTML view. We use Traits to write models in Python. Traits lets us define attributes of an object statically, and supports notifications when the attributes change. Jigna integrates well with traits so that these notifications automatically update the UI. Similarly, user inputs on the UI change model attributes, call public methods on the model as well. Note however that you don’t need traits and you can bind it to your plain old Python objects as well - you would just need to add your own events if you want your models to be updated outside of the UI.
 
 ### More about the presentation
 
