@@ -13,12 +13,6 @@ a browser.
 
 ## Description
 
-Jigna aims to provide an easy way to create rich user interfaces for Python 
-applications using web technologies like HTML, CSS and Javascript, as opposed to 
-widget based toolkits like Qt/wx or native toolkits. It provides a seamless 
-two-way data binding between the Python model and the HTML view so that the view 
-is always in sync with the model and can interact with it.
-
 Let us say we have a nice model written in Python (specifically, in [Traits][1]):
 
     from traits.api import HasTraits, Str, on_trait_change
