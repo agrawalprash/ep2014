@@ -62,7 +62,7 @@ The Return of "The Return of Peer to Peer Computing".
 16
 Other
 Prashant Agrawal
-Jigna: a seamless Python-JS bridge to create rich HTML UIs for Python a= pps
+Jigna: a seamless Python-JS bridge to create rich HTML UIs for Python apps
 17
 Science
 Robert Metzger
@@ -94,7 +94,7 @@ Full Stack Python
 24
 Web
 Konark Modi
-Design considerations while Evaluating,Developing and deploying a dist= ributed task processing system
+Design considerations while Evaluating,Developing and deploying a distributed task processing system
 25
 Science
 Stefan Scherfke
@@ -173,7 +173,7 @@ Home Automation with Kivy, Raspberry Pi and MQTT
 44
 Web
 adam
-How Disqus is using Django as the basis of our Service Oriented Archit= ecture
+How Disqus is using Django as the basis of our Service Oriented Architecture
 45
 Other
 Jim Baker
@@ -260,7 +260,7 @@ Identifying Bugs Before Runtime With Jedi
 66
 Education
 Reimar Bauer
-pymove3D - Python moves the world - Attractive programming for young p= eople.
+pymove3D - Python moves the world - Attractive programming for young people.
 67
 Web
 Erik van Zijst
@@ -268,7 +268,7 @@ The inner guts of Bitbucket
 68
 Security
 Enrico Branca
-Building a storage engine in Python for storing malware and malicious = data
+Building a storage engine in Python for storing malware and malicious data
 69
 Python Core
 Enrico Branca
