@@ -8,7 +8,7 @@
     <meta name="author" content="Prashant Agrawal">
 
     <link rel="stylesheet" href="css/reveal.min.css">
-    <link rel="stylesheet" href="css/theme/default.css">
+    <link rel="stylesheet" href="css/theme/solarized.css">
 
     <!-- For syntax highlighting -->
     <link rel="stylesheet" href="lib/css/zenburn.css">
@@ -21,7 +21,7 @@
           <h1>
               <font color="#cc4125">Jigna</font>
           </h1>
-          <h2>Creating live HTML UIs for Python apps</h2>
+          <h2>Creating live HTML GUI for Python apps</h2>
           <br><br>
           <p>
               <font color="#ff9900">Prashant Agrawal</font>
@@ -29,7 +29,7 @@
           <p>Software Developer, Enthought</p>
           <br><br>
           <h3>
-            <font color="#ffffff">July 2014, EuroPython - Berlin</font>
+            July 2014, EuroPython - Berlin
           </h3>
         </section>
 
@@ -110,28 +110,29 @@
         </section>
 
         <section class="slide">
-            <h2>A Demo</h2>
-            <div>
-                <br>
-            </div>
-            <div>
-                <pre><code>
-                    class Person(HasTraits):
-
-                        name = Str
-                        age  = Int
-
-                        def update_name(self, name):
-                            self.name = name
-                </code></pre>
-            </div>
-                <pre><code>
-                    &lt;div&gt;
-                        &lt;input ng-model="person.name" /&gt;&lt;br&gt;
-                        <span style="font-family: monospace; font-size: 19.459707260131836px; font-style: normal; font-variant: normal;">&lt;input ng-model="person.age" /&gt;&lt;br&gt;</span>
-                    &lt;/div&gt;
-                </code></pre>
+            <h2>Simple Data Binding</h2>
             <br>
+
+            <pre><code>
+            class Person(HasTraits):
+
+                name = Str
+                age  = Int
+
+                def update_name(self, name):
+                    self.name = name
+            </code></pre>
+
+            <pre><code>
+            body_html = """
+                &lt;div&gt;
+                    &lt;input ng-model="person.name" /&gt; &lt;br&gt;
+                    &lt;input ng-model="person.age" /&gt; &lt;br&gt;
+                &lt;/div&gt;
+            """
+            template = Template(body_html)
+            </code></pre>
+            <a href="http://localhost:9000/simple_view" target="myiframe">Demo</a>
         </section>
 
         <section class="slide">
@@ -149,7 +150,6 @@
             </div>
             <div>
                 <a href="http://localhost:9000/success_error_callbacks" target="myiframe">Demo</a>
-                <iframe id="myiframe" name="myiframe"></iframe>
             </div>
         </section>
 
@@ -184,6 +184,8 @@
 
 
     </div>
+
+    <iframe id="myiframe" name="myiframe" height='0' width='0'></iframe>
 
     <script src="lib/js/head.min.js"></script>
     <script src="js/reveal.min.js"></script>
