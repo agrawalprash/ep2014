@@ -32,6 +32,18 @@ class Example(HasTraits):
     def _get_code(self):
         return open(self.filename, 'r').read()
 
+    #: Domain model code representation
+    domain_model_code = Property(Str, depends_on='filename')
+    def _get_domain_model_code(self):
+        from_domain_model = self.code.split('#### Domain model ####\n')[1]
+        return from_domain_model.split("\n#### UI layer ####")[0]
+
+    #: UI layer code representation
+    ui_layer_code = Property(Str, depends_on='filename')
+    def _get_ui_layer_code(self):
+        from_ui_layer = self.code.split('#### UI layer ####\n')[1]
+        return from_ui_layer.split("\n#### Entry point ####")[0]
+
     def run(self):
         """
         Run the example
