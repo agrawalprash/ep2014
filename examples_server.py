@@ -1,30 +1,44 @@
-import SimpleHTTPServer
-import BaseHTTPServer
 from subprocess import Popen
 from os.path import join, expanduser
+from traits.api import HasTraits, Str, List
+from jigna.api import Template, WebApp
 
-class ExamplesRequestHandler(SimpleHTTPServer.SimpleHTTPRequestHandler):
+
+#### Domain model ####
+
+class ExamplesServer(HasTraits):
     """
     A simple examples server which executes examples in the jigna examples
     directory based on the user's requests.
     """
 
-    EXAMPLES_DIRECTORY = expanduser('~/work/jigna/examples/')
+    root = Str
+    def _root_default(self):
+        return expanduser('~/work/jigna/examples/')
 
-    def do_GET(self):
-        # obtain the example file that needs to be executed
-        example_file = join(self.EXAMPLES_DIRECTORY, self.path.lstrip('/')) + '.py'
+    selected_examples = List(Str)
+    def _selected_examples_default(self):
+        return ['simple_view', 'model_updates', 'method_call', 'method_call_slow',
+            'list_of_instances', 'instance_trait', 'event_trait', 'success_error_callbacks',
+            'simple_view_web', 'embedding_chaco', 'embedding_mayavi',
+            'embedding_in_qt']
 
-        # execute it
+    def run_example(self, example_name):
+        example_file = join(self.root, example_name + '.py')
         cmd = ['python', example_file]
-        Popen(cmd, cwd=self.EXAMPLES_DIRECTORY).wait()
+        Popen(cmd, cwd=self.root)
 
-        # send an OK response
-        self.send_response(200, 'OK')
 
-PORT = 9000
+#### UI layer ####
 
-httpd = BaseHTTPServer.HTTPServer(('0.0.0.0', PORT), ExamplesRequestHandler)
+template = Template(html_file='presentation/index.html', base_url='presentation')
 
-print "serving at port", PORT
-httpd.serve_forever()
+if __name__ == "__main__":
+    examples_server = ExamplesServer()
+    app = WebApp(
+        template=template,
+        context={'examples_server': examples_server},
+        port=8000
+    )
+
+    app.start()

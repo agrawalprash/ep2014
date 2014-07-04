@@ -4,7 +4,7 @@
 	<head>
 		<meta charset="utf-8">
 
-		<title>reveal.js - The HTML Presentation Framework</title>
+		<title>Jigna - Creating beautiful, live HTML UIs for Python apps</title>
 
 		<meta name="description" content="A framework for easily creating beautiful presentations using HTML">
 		<meta name="author" content="Hakim El Hattab">
@@ -34,20 +34,32 @@
 		<!--[if lt IE 9]>
 		<script src="lib/js/html5shiv.js"></script>
 		<![endif]-->
+
+		<script src="/jigna/jigna.js"></script>
+		<script>jigna.initialize()</script>
 	</head>
 
-	<body>
+	<body ng-app='jigna'>
 
 		<div class="reveal">
 
 			<!-- Any section element inside of this container is displayed as a slide -->
 			<div class="slides">
 				<section>
-					<h1>Reveal.js</h1>
-					<h3>HTML Presentations Made Easy</h3>
+					<h1>Jigna</h1>
+					<h3>Creating beautiful, live HTML UIs for Python apps</h3>
 					<p>
-						<small>Created by <a href="http://hakim.se">Hakim El Hattab</a> / <a href="http://twitter.com/hakimel">@hakimel</a></small>
+						<small><a href="http://github.com/agrawalprash">Prashant Agrawal</a> /
+							   <a href="http://www.enthought.com">Enthought Inc.</a>
+						</small>
 					</p>
+				</section>
+
+				<section ng-repeat="example_name in examples_server.selected_examples">
+					<h2>{{example_name}}</h2>
+					<button ng-click="examples_server.run_example(example_name)">
+						Run example
+					</button>
 				</section>
 
 				<section>
