@@ -57,6 +57,9 @@
 
 				<section ng-repeat="example in examples_server.examples">
 					<h2>{{example.name}}</h2>
+                    <pre><code data-trim>
+{{example.code}}
+                    </code></pre>
 					<button ng-click="example.run()">
 						Run example
 					</button>

@@ -24,6 +24,11 @@ class Example(HasTraits):
     def _get_name(self):
         return self.filename[:-3].replace("_", " ").capitalize()
 
+    #: Code representation
+    code = Property(Str, depends_on='filename')
+    def _get_code(self):
+        return open(join(self.root, self.filename), 'r').read()
+
     def run(self):
         """
         Run the example
