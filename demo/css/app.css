@@ -13,6 +13,11 @@ pre code {
     font-family: monospace;
 }
 
+pre {
+    padding: 15px;
+    background-color: #ddd;
+}
+
 /* Top bar styles */
 .top-bar {
     background-color: black;
@@ -87,7 +92,11 @@ pre code {
 }
 
 .example-content .code-area {
+    font-size: 16px;
+    max-height: 70%;
+    overflow-y: auto;
+}
+
+.example-content .bottom-area {
     padding-top: 25px;
-    padding-bottom: 25px;
-    font-size: 20px;
 }
