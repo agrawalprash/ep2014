@@ -25,52 +25,65 @@
         <div ng-controller='DemoController'>
 
             <!-- Top bar -->
-            <div class='top-bar'>
-                <li class='name'>
-                    <h1><a href="#">Examples Viewer</a></h1>
-                </li>
-            </div>
+            <nav class='top-bar'>
+                <div class='title-area row'>
+                    <span class='title small-3 columns'>
+                        <h3><a href="#">Jigna</a></h3>
+                    </span>
 
-            <div class='row'>
+                    <span class='small-2 right columns'>
+                        <h5>
+                            <a class='view-mode active' href="#">Examples</a>
+                        </h5>
+                    </span>
+
+                    <span class='small-2 right columns'>
+                        <h5>
+                            <a class='view-mode' href="#">Presentation</a>
+                        </h5>
+                    </span>
+                </div>
+            </nav>
+
+            <div class='row full-width'>
 
                 <!-- Example listing -->
-                <div class='small-3 columns example-listing'>
-                    <div class='heading'>Examples</div>
+                <div class='small-2 columns example-listing'>
                     <div class='listing'>
-                        <div class='example-entry'>
-                            <button class='btn' ng-click='update_active(0)'>
-                                Simple view
-                            </button>
+
+                        <div class='example-entry heading'>
+                            Examples
                         </div>
 
-                        <div class='example-entry'>
-                            <button class='btn' ng-click='update_active(1)'>
-                                Model updates
-                            </button>
+                        <div class='example-entry active' ng-click='update_active(4)'>
+                            Simple view
                         </div>
 
-                        <div class='example-entry'>
-                            <button class='btn' ng-click='update_active(2)'>
-                                Method call
-                            </button>
+                        <div class='example-entry' ng-click='update_active(4)'>
+                            Method call
                         </div>
 
-                        <div class='example-entry'>
-                            <button class='btn' ng-click='update_active(3)'>
-                                Slow Method call
-                            </button>
+                        <div class='example-entry' ng-click='update_active(4)'>
+                            Method call slow
                         </div>
 
-                        <div class='example-entry'>
-                            <button class='btn' ng-click='update_active(4)'>
-                                Event trait
-                            </button>
+                        <div class='example-entry' ng-click='update_active(4)'>
+                            Event trait
                         </div>
+
+                        <div class='example-entry' ng-click='update_active(4)'>
+                            Success/error callbacks
+                        </div>
+
+                        <div class='example-entry' ng-click='update_active(4)'>
+                            Embedding Qt and Mayavi
+                        </div>
+
                     </div>
                 </div>
 
                 <!-- Example contents -->
-                <div class='small-9 columns example-contents'>
+                <div class='small-10 columns example-contents'>
                     <div class='example-content' ng-show='active_view == 0'>
                         <div class='example-name'>
                             Simple view
@@ -148,5 +161,9 @@
                 </div>
             </div>
         </div>
+
+        <script>
+            $(document).foundation();
+        </script>
     </body>
 </html>

@@ -1,0 +1,62 @@
+.full-width {
+    width: 100%;
+    max-width: 100%;
+}
+
+/* Top bar styles */
+.top-bar {
+    background-color: black;
+    color: white;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    padding-left: 25px;
+    padding-right: 25px;
+}
+
+.top-bar .view-mode {
+    color: #bbb;
+    padding: 5px;
+}
+
+.top-bar .view-mode:hover {
+    color: #ddd;
+}
+
+.top-bar .view-mode.active {
+    color: #eee !important;
+    border-bottom: solid 2px #eee;
+}
+
+.top-bar .view-mode a {
+    color: white !important;
+
+}
+
+
+/* Example view styles */
+.example-listing {
+    padding: 15px;
+}
+
+.example-listing .heading {
+    padding-bottom: 15px !important;
+    font-size: 24px;
+    font-weight: bold;
+    border-bottom: solid 2px #666;
+    background-color: white !important;
+}
+
+.example-listing .example-entry {
+    padding: 5px;
+    border-bottom: solid 1px #ddd;
+}
+
+.example-listing .example-entry:hover {
+    cursor: pointer;
+    background-color: #eee;
+}
+
+.example-listing .example-entry.active {
+    background-color: #ccc !important;
+    font-weight: bold;
+}
