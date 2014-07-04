@@ -12,15 +12,24 @@ app.controller('DemoController', function($scope){
 app.directive('highlight', function(){
     return function(scope, element, attrs){
 
-        var escapeHTML = function(element) {
-            var unescaped_html = element.html();
-            element.text(unescaped_html).html();
-        };
+         var entityMap = {
+            "&": "&amp;",
+            "<": "&lt;",
+            ">": "&gt;",
+            '"': '&quot;',
+            "'": '&#39;',
+            "/": '&#x2F;'
+          };
+
+          function escapeHtml(string) {
+            return String(string).replace(/[&<>"'\/]/g, function (s) {
+              return entityMap[s];
+            });
+          }
 
         scope.$watch(attrs.highlight, function(code){
             if (code.length) {
-                element.html(code);
-                escapeHTML(element);
+                element.html(escapeHtml(code));
                 hljs.highlightBlock(element[0]);
             }
         });
