@@ -22,7 +22,7 @@ class Example(HasTraits):
     #: Human readable name of the example
     name = Property(Str, depends_on='filename')
     def _get_name(self):
-        return self.filename.replace("_", " ").capitalize()
+        return self.filename[:-3].replace("_", " ").capitalize()
 
     def run(self):
         """
@@ -40,17 +40,10 @@ class ExamplesServer(HasTraits):
 
     root = Str
 
-    examples = Property(List(Example), depends_on='selected_examples')
-    def _get_examples(self):
+    examples = List(Example)
+    def _examples_default(self):
         examples = []
-        for example_name in self.selected_examples:
-            examples.append(Example(root=self.root, filename=example_name+".py"))
-
-        return examples
-
-    selected_examples = List(Str)
-    def _selected_examples_default(self):
-        return [
+        example_names = [
             'simple_view',
             'model_updates',
             'method_call',
@@ -63,6 +56,11 @@ class ExamplesServer(HasTraits):
             'embedding_chaco',
             'embedding_in_qt'
         ]
+
+        for example_name in example_names:
+            examples.append(Example(root=self.root, filename=example_name+".py"))
+
+        return examples
 
 #### UI layer ####
 
