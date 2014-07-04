@@ -64,28 +64,11 @@
                             Examples
                         </div>
 
-                        <div class='example-entry active' ng-click='update_active(4)'>
-                            Simple view
-                        </div>
-
-                        <div class='example-entry' ng-click='update_active(4)'>
-                            Method call
-                        </div>
-
-                        <div class='example-entry' ng-click='update_active(4)'>
-                            Method call slow
-                        </div>
-
-                        <div class='example-entry' ng-click='update_active(4)'>
-                            Event trait
-                        </div>
-
-                        <div class='example-entry' ng-click='update_active(4)'>
-                            Success/error callbacks
-                        </div>
-
-                        <div class='example-entry' ng-click='update_active(4)'>
-                            Embedding Qt and Mayavi
+                        <div class='example-entry'
+                             ng-repeat='example in server.examples'
+                             ng-class='{active: active_example == $index}'
+                             ng-click='update_active_example($index)'>
+                            {{example.name}}
                         </div>
 
                     </div>
@@ -93,81 +76,24 @@
 
                 <!-- Example contents -->
                 <div class='small-10 columns example-contents full-height'>
-                    <div class='example-content' ng-show='active_view == 0'>
+                    <div class='example-content'
+                         ng-repeat='example in server.examples'
+                         ng-show='active_example == $index'>
                         <div class='heading'>
-                            Simple view
+                            {{example.name}}
                         </div>
 
                         <div class='code-area'>
                             <pre><code class='python'>
-class Person(HasTraits):
-    name = Str
-    age = Int
+{{example.code}}
                             </code></pre>
                         </div>
 
                         <div class='bottom-area'>
-                            <button class='btn right'>Run example</button>
-                        </div>
-                    </div>
-
-                    <div class='example-content' ng-show='active_view == 1'>
-                        <div class='example-name'>
-                            Model updates
-                        </div>
-
-                        <div class='code-area'>
-                            Code
-                            <textarea></textarea>
-                        </div>
-
-                        <div class='bottom-area'>
-                            <button class='btn right'>Run example</button>
-                        </div>
-                    </div>
-
-                    <div class='example-content' ng-show='active_view == 2'>
-                        <div class='example-name'>
-                            Method call
-                        </div>
-
-                        <div class='code-area'>
-                            Code
-                            <textarea></textarea>
-                        </div>
-
-                        <div class='bottom-area'>
-                            <button class='btn right'>Run example</button>
-                        </div>
-                    </div>
-
-                    <div class='example-content' ng-show='active_view == 3'>
-                        <div class='example-name'>
-                            Slow method call
-                        </div>
-
-                        <div class='code-area'>
-                            Code
-                            <textarea></textarea>
-                        </div>
-
-                        <div class='bottom-area'>
-                            <button class='btn right'>Run example</button>
-                        </div>
-                    </div>
-
-                    <div class='example-content' ng-show='active_view == 4'>
-                        <div class='example-name'>
-                            Event trait
-                        </div>
-
-                        <div class='code-area'>
-                            Code
-                            <textarea></textarea>
-                        </div>
-
-                        <div class='bottom-area'>
-                            <button class='btn right'>Run example</button>
+                            <button class='btn right'
+                                    ng-click='example.run()'>
+                                Run example
+                            </button>
                         </div>
                     </div>
                 </div>
