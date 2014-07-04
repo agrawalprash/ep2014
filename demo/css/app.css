@@ -1,6 +1,16 @@
+/* Generic styles */
 .full-width {
     width: 100%;
     max-width: 100%;
+}
+
+.full-height {
+  height: 100%;
+  overflow-y: auto;
+}
+
+pre code {
+    font-family: monospace;
 }
 
 /* Top bar styles */
@@ -32,31 +42,52 @@
 
 }
 
-
-/* Example view styles */
+/* Example listing styles */
 .example-listing {
-    padding: 15px;
+    padding: 25px;
+    background-color: #aaa;
 }
 
 .example-listing .heading {
     padding-bottom: 15px !important;
     font-size: 24px;
     font-weight: bold;
-    border-bottom: solid 2px #666;
-    background-color: white !important;
+    color: #666;
 }
 
 .example-listing .example-entry {
-    padding: 5px;
-    border-bottom: solid 1px #ddd;
+    padding-left: 5px;
+    padding-right: 5px;
+    padding-top: 10px;
+    padding-bottom: 10px;
 }
 
 .example-listing .example-entry:hover {
     cursor: pointer;
-    background-color: #eee;
+    background-color: #ccc;
 }
 
 .example-listing .example-entry.active {
-    background-color: #ccc !important;
+    background-color: #eee !important;
     font-weight: bold;
+}
+
+
+/* Example content styles */
+.example-content {
+    padding: 15px;
+}
+
+.example-content .heading {
+    padding-top: 15px;
+    padding-bottom: 15px !important;
+    font-size: 32px;
+    font-weight: bold;
+    color: #666;
+}
+
+.example-content .code-area {
+    padding-top: 25px;
+    padding-bottom: 25px;
+    font-size: 20px;
 }
