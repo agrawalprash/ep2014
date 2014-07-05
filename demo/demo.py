@@ -1,5 +1,8 @@
+import imp
+import os
+from bs4 import BeautifulSoup
 from subprocess import Popen
-from os.path import join, expanduser
+from os.path import join, expanduser, abspath
 from traits.api import HasTraits, Str, List, Property
 from jigna.api import Template, WebApp
 
@@ -39,10 +42,21 @@ class Example(HasTraits):
         return from_domain_model.split("\n#### UI layer ####")[0]
 
     #: UI layer code representation
-    ui_layer_code = Property(Str, depends_on='filename')
+    ui_layer_code = Property(Str, depends_on=['filename', 'ID'])
     def _get_ui_layer_code(self):
-        from_ui_layer = self.code.split('#### UI layer ####\n')[1]
-        return from_ui_layer.split("\n#### Entry point ####")[0]
+        # change the directory temporarily to the examples root directory
+        old_curdir = abspath(os.curdir)
+        os.chdir(self.root)
+
+        # load the template from the example
+        example = imp.load_source(self.ID, self.filename)
+        soup = BeautifulSoup(example.template.html)
+
+        # change back the current directory
+        os.chdir(old_curdir)
+
+        return "".join([str(x) for x in soup.body.contents])
+
 
     def run(self):
         """
