@@ -47,6 +47,16 @@ pre {
 
 }
 
+
+/* /////// Presentation Container Styles /////// */
+
+.presentation-container {
+    background-color: indianred;
+}
+
+
+/* /////// Examples Container Styles /////// */
+
 /* Example listing styles */
 .example-listing {
     padding: 25px;
