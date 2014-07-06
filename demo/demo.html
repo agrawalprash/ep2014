@@ -1,5 +1,11 @@
 <html>
     <head>
+        <!--  //////////// Styles /////////// -->
+
+        <!-- RevealJS styles -->
+        <link rel="stylesheet" href="css/reveal.min.css">
+        <link rel="stylesheet" href="css/default.css" id="theme">
+
         <!-- Foundation styles -->
         <link rel='stylesheet' href='css/normalize.css' />
         <link rel='stylesheet' href='css/foundation.css' />
@@ -10,11 +16,14 @@
         <!-- App styles -->
         <link rel='stylesheet' href='css/app.css' />
 
-        <!-- jigna related scripts -->
+        <!--  //////////// Scripts /////////// -->
+
+        <!-- Jigna scripts -->
         <script type='text/javascript' src='/jigna/jigna.js'></script>
-        <script type='text/javascript'>
-            jigna.initialize()
-        </script>
+
+        <!-- RevealJS scripts -->
+        <script type='text/javascript' src="js/head.min.js"></script>
+        <script type='text/javascript' src="js/reveal.min.js"></script>
 
         <!-- Foundation scripts -->
         <script type='text/javascript' src='js/modernizr.js'></script>
@@ -22,9 +31,6 @@
 
         <!-- Highlight scripts -->
         <script type='text/javascript' src='js/highlight.pack.js'></script>
-        <script type='text/javascript'>
-            hljs.initHighlightingOnLoad();
-        </script>
 
         <!-- App scripts -->
         <script type='text/javascript' src='js/app.js'></script>
@@ -54,7 +60,35 @@
                 </div>
             </nav>
 
-            <div class='row full-width full-height'>
+            <div class='presentation-container full-width full-height'>
+                <div class='reveal'>
+                    <div class='slides'>
+                        <section>
+                            <h1>Jigna</h1>
+                            <h3>Creating beautiful, live HTML UIs for Python
+                                apps
+                            </h3>
+                            <p>
+                                <small>
+                                    <a href="http://github.com/agrawalprash">
+                                        Prashant Agrawal
+                                    </a> <br/>
+                                    Software Developer,
+                                    <a href="http://www.enthought.com">
+                                        Enthought Inc.
+                                    </a>
+                                </small>
+                            </p>
+                        </section>
+
+                        <section>
+                            <h2>Personal Introduction</h2>
+                        </section>
+                    </div>
+                </div>
+            </div>
+
+            <div class='examples-container row full-width full-height' style='display:none'>
 
                 <!-- Example listing -->
                 <div class='small-2 columns example-listing full-height'>
@@ -86,14 +120,20 @@
                         <div class='code-area row'>
                             <div class='small-6 columns'>
                                 Domain Model:<br><br>
-                                <pre><code class='python' highlight='example.domain_model_code'>
-                                </code></pre>
+                                <pre>
+                                    <code class='python'
+                                          highlight='example.domain_model_code'>
+                                    </code>
+                                </pre>
                             </div>
 
                             <div class='small-6 columns'>
                                 UI layer:<br><br>
-                                <pre><code class='html' highlight='example.ui_layer_code'>
-                                </code></pre>
+                                <pre>
+                                    <code class='html'
+                                          highlight='example.ui_layer_code'>
+                                    </code>
+                                </pre>
                             </div>
                         </div>
 
@@ -108,8 +148,33 @@
             </div>
         </div>
 
-        <script>
+        <!--  //////////// Post-Document Scripts /////////// -->
+
+        <!-- Jigna initialization -->
+        <script type='text/javascript'>
+            jigna.initialize()
+        </script>
+
+        <!-- RevealJS initialization -->
+        <script type='text/javascript'>
+            Reveal.initialize({
+                controls: true,
+                progress: true,
+                history: true,
+                center: true,
+                theme: 'default',
+                transition: 'concave'
+            });
+        </script>
+
+        <!-- Foundation initialization -->
+        <script type='text/javascript'>
             $(document).foundation();
+        </script>
+
+        <!-- Highlight initialization -->
+        <script type='text/javascript'>
+            hljs.initHighlightingOnLoad();
         </script>
     </body>
 </html>
