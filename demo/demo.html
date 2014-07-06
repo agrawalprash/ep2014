@@ -50,7 +50,8 @@
                         <h5>
                             <a class='view-mode' href="#"
                                ng-class='{active: active_mode=="examples"}'
-                               ng-click='update_active_mode("examples")'>
+                               ng-click='update_active_mode("examples");
+                               $event.preventDefault()'>
                                Examples
                             </a>
                         </h5>
@@ -60,7 +61,8 @@
                         <h5>
                             <a class='view-mode' href="#"
                                ng-class='{active: active_mode=="presentation"}'
-                               ng-click='update_active_mode("presentation")'>
+                               ng-click='update_active_mode("presentation");
+                               $event.preventDefault()'>
                                Presentation
                             </a>
                         </h5>
@@ -116,11 +118,6 @@
                                 </li>
 
                                 <li class='fragment'>
-                                    <em>Prior:</em> B.Tech. and M.Tech. from
-                                    Indian Institute of Technology Bombay
-                                </li>
-
-                                <li class='fragment'>
                                     Team members:
                                     <ul>
                                         <li>
@@ -139,6 +136,53 @@
                                 </li>
                             </ul>
                         </section>
+
+                        <!-- Slide -->
+                        <section>
+                            <h2>Current state of UIs for Python apps</h2>
+                            <ul>
+                                <li>Qt - PyQt / PySide</li>
+                                <li>wx - wxPython</li>
+                                <li>Tkinter</li>
+                                <img src='images-boring.png' />
+                            </ul>
+                        </section>
+
+                        <!-- Slide -->
+                        <section>
+                            <h2>How about web apps?</h2>
+                            <img src='images-awesome.png' />
+                        </section>
+
+                        <!-- Slide -->
+                        <section>
+                            <h2>How about web apps?</h2>
+                            <img src='images-awesome.png' />
+                        </section>
+
+                        <!-- Slide -->
+                        <section>
+                            <h2>Enter Jigna</h2>
+                            <img src='images-fusion-jigna.png' />
+                        </section>
+
+                        <!-- Slide -->
+                        <section>
+                            <h2>What is it exactly?</h2>
+                            <ul>
+                                <li>A bridge to allow writing <strong>live</strong>
+                                    HTML apps for Python
+                                </li>
+                                <li>Declarative way of writing UIs</li>
+                                <li>Automatic binding between the model and the
+                                    view
+                                </li>
+                                <li>UI development can be easily handed off to
+                                    an HTML/CSS/JS guru
+                                </li>
+                            </ul>
+                        </section>
+
                     </div>
                 </div>
             </div>
