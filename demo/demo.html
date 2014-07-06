@@ -48,27 +48,37 @@
 
                     <span class='small-2 right columns'>
                         <h5>
-                            <a class='view-mode active' href="#">Examples</a>
+                            <a class='view-mode' href="#"
+                               ng-class='{active: active_mode=="examples"}'
+                               ng-click='$parent.active_mode = "examples"'>
+                               Examples
+                            </a>
                         </h5>
                     </span>
 
                     <span class='small-2 right columns'>
                         <h5>
-                            <a class='view-mode' href="#">Presentation</a>
+                            <a class='view-mode' href="#"
+                               ng-class='{active: active_mode=="presentation"}'
+                               ng-click='$parent.active_mode = "presentation"'>
+                               Presentation
+                            </a>
                         </h5>
                     </span>
                 </div>
             </nav>
 
-            <div class='presentation-container full-width full-height'>
+            <div class='presentation-container full-width full-height'
+                 ng-show='active_mode == "presentation"'>
                 <div class='reveal'>
                     <div class='slides'>
                         <section>
-                            <h1>Jigna</h1>
-                            <h3>Creating beautiful, live HTML UIs for Python
+                            <h1>JIGNA</h1>
+                            <h4 style='font-family: serif; font-style: italic'>
+                                Creating beautiful, live HTML UIs for Python
                                 apps
-                            </h3>
-                            <p>
+                            </h4>
+                            <h3>
                                 <small>
                                     <a href="http://github.com/agrawalprash">
                                         Prashant Agrawal
@@ -78,7 +88,7 @@
                                         Enthought Inc.
                                     </a>
                                 </small>
-                            </p>
+                            </h3>
                         </section>
 
                         <section>
@@ -88,7 +98,8 @@
                 </div>
             </div>
 
-            <div class='examples-container row full-width full-height' style='display:none'>
+            <div class='examples-container row full-width full-height'
+                 ng-show='active_mode == "examples"'>
 
                 <!-- Example listing -->
                 <div class='small-2 columns example-listing full-height'>
