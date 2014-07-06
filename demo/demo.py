@@ -57,7 +57,6 @@ class Example(HasTraits):
 
         return "".join([str(x) for x in soup.body.contents])
 
-
     def run(self):
         """
         Run the example

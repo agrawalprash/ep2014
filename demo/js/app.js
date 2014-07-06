@@ -7,6 +7,10 @@ app.controller('DemoController', function($scope){
     $scope.update_active_example = function(index){
         $scope.active_example = index;
     };
+
+    $scope.update_active_mode = function(mode){
+        $scope.active_mode = mode;
+    };
 });
 
 app.directive('highlight', function(){
@@ -31,6 +35,17 @@ app.directive('highlight', function(){
             if (code.length) {
                 element.html(escapeHtml(code));
                 hljs.highlightBlock(element[0]);
+            }
+        });
+    };
+});
+
+app.directive('revealWhen', function(){
+    return function(scope, element, attrs){
+
+        scope.$watch(attrs.revealWhen, function(condition){
+            if (condition) {
+                Reveal.layout();
             }
         });
     };
