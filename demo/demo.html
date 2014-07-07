@@ -156,7 +156,7 @@
 
                         <!-- Slide -->
                         <section>
-                            <h2>How about web apps?</h2>
+                            <h2>What about web apps?</h2>
                         </section>
 
                         <!-- Slide -->
@@ -194,7 +194,41 @@
                         <!-- Slide -->
                         <section>
                             <h2>Jigna</h2>
-                            <!-- <img src='images-fusion-jigna.png' /> -->
+                            A Python-Javascript bridge to create rich HTML UIs
+                            for Python apps
+                            <div class='row'>
+                                <div class='small-6 columns fragment'>
+                                    <pre style='height: 280px'>
+                                        <code class='python'>
+    class Employee(HasTraits):
+
+        name = Str
+        salary = Int
+
+        def update_salary(self):
+            self.salary += 0.2*self.salary
+
+    employee = Employee(name='Fred', salary=200)
+                                        </code>
+                                    </pre>
+                                    Domain model
+                                </div>
+                                <div class='small-6 columns fragment'>
+                                    <pre style='height: 280px'>
+                                        <code class='html' ng-non-bindable>
+  &lt;div&gt;
+    Employee name is <span class='underline'>{{employee.name}}</span>
+    Salary is <span class='underline'>{{employee.salary}}</span>
+
+    &lt;button <span class='underline'>ng-click=employee.update_salary()'</span>&gt;
+      Update salary
+    &lt;/button&gt;
+  &lt;/div&gt;
+                                        </code>
+                                    </pre>
+                                    UI layer
+                                </div>
+                            </div>
                         </section>
 
                         <!-- Slide -->
@@ -267,12 +301,18 @@
                             <h5>This slide has been intentionally left blank</h5>
                         </section>
 
+                        <!-- Slide -->
                         <section>
                             <h2>The road ahead</h2>
                             <ul>
                                 <li>Matplotlib on the web</li>
                                 <li>Integration with IPython notebooks</li>
                             </ul>
+                        </section>
+
+                        <!-- Slide -->
+                        <section>
+                            <h2>github.com/enthought/jigna</h2>
                         </section>
 
                     </div>
@@ -350,6 +390,8 @@
         <!-- RevealJS initialization -->
         <script type='text/javascript'>
             Reveal.initialize({
+                width: 1200,
+                height: 800,
                 controls: true,
                 progress: true,
                 history: true,

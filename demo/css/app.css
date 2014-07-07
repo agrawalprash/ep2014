@@ -22,6 +22,17 @@ h1,h2,h3,h4,h5,h6 {
     text-transform: none !important;
 }
 
+.row {
+    max-width: 100%;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.underline {
+    border-bottom: solid 2px lightgreen;
+}
+
 /* Top bar styles */
 .top-bar {
     background-color: black;
