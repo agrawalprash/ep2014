@@ -1,4 +1,28 @@
-@import url(https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic);
+@font-face {
+  font-family: 'Lato';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Lato Regular'), local('Lato-Regular'), url("../../lib/font/lato-webfont.ttf") format('truetype');
+}
+@font-face {
+  font-family: 'Lato';
+  font-style: normal;
+  font-weight: 700;
+  src: local('Lato Bold'), local('Lato-Bold'), url("../../lib/font/lato-bold-webfont.ttf") format('truetype');
+}
+@font-face {
+  font-family: 'Lato';
+  font-style: italic;
+  font-weight: 400;
+  src: local('Lato Italic'), local('Lato-Italic'), url("../../lib/font/lato-italic-webfont.ttf") format('truetype');
+}
+@font-face {
+  font-family: 'Lato';
+  font-style: italic;
+  font-weight: 700;
+  src: local('Lato Bold Italic'), local('Lato-BoldItalic'), url("../../lib/font/lato-bolditalic-webfont.ttf") format('truetype');
+}
+
 /**
  * Default theme for reveal.js.
  *
