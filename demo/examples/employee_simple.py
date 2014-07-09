@@ -17,8 +17,8 @@ employee = Employee(name='Tom', salary=2000)
 
 body_html = """
     <div>
-        Employee name is {{employee.name}} <br>
-        Salary is ${{employee.salary}} <br>
+        Employee name is {{employee.name}} <br/>
+        Salary is ${{employee.salary}} <br/>
 
         <button ng-click='employee.update_salary()'>
             Update salary
