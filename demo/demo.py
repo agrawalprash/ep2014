@@ -55,7 +55,7 @@ class Example(HasTraits):
         # change back the current directory
         os.chdir(old_curdir)
 
-        return "".join([str(x) for x in soup.body.contents])
+        return "".join([str(x) for x in soup.body.prettify()])
 
     def run(self):
         """
@@ -103,9 +103,9 @@ template = Template(html_file='demo.html', recommended_size=(1400, 800))
 if __name__ == '__main__':
     examples_server = ExamplesServer(root=expanduser('~/work/jigna/examples'))
 
-    examples_server.examples.append(
+    examples_server.examples.extend([
         Example(root='examples', ID='employee_simple')
-    )
+    ])
 
     app = WebApp(template=template, context={'server': examples_server}, port=8000)
     app.start()
