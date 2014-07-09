@@ -236,7 +236,7 @@
         def update_salary(self):
             self.salary += int(0.2*self.salary)
 
-    employee = Employee(name='Tom', salary=200)
+    employee = Employee(name='Tom', salary=2000)
                                         </code>
                                     </pre>
                                     Domain model
@@ -256,6 +256,12 @@
                                     </pre>
                                     UI layer
                                 </div>
+                            </div>
+                            <div class='fragment'>
+                                <button class='btn'
+                                     ng-click='server.get_example("employee_simple").run()'>
+                                    Run example
+                                </button>
                             </div>
                         </section>
 

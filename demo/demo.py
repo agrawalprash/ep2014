@@ -94,6 +94,16 @@ class ExamplesServer(HasTraits):
 
         return examples
 
+    def get_example(self, ID):
+        ''' Return the example with the given ID.'''
+
+        example = None
+        for example in self.examples:
+            if example.ID == ID:
+                return example
+
+        return None
+
 #### UI layer ####
 
 template = Template(html_file='demo.html', recommended_size=(1400, 800))
@@ -107,5 +117,5 @@ if __name__ == '__main__':
         Example(root='examples', ID='employee_simple')
     ])
 
-    app = WebApp(template=template, context={'server': examples_server}, port=8000)
+    app = WebApp(template=template, context={'server': examples_server}, port=8001)
     app.start()

@@ -23,7 +23,7 @@ body_html = """
     Update salary
   </button>
 """
-template = Template(body_html=body_html)
+template = Template(body_html=body_html, recommended_size=(250, 100))
 
 #### Entry point ####
 
