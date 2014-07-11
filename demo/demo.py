@@ -36,14 +36,14 @@ class Example(HasTraits):
         return open(join(self.root, self.filename), 'r').read()
 
     #: Domain model code representation
-    domain_model_code = Property(Str, depends_on='code')
-    def _get_domain_model_code(self):
+    domain_model_code = Str
+    def _domain_model_code_default(self):
         from_domain_model = self.code.split('#### Domain model ####\n')[1]
         return from_domain_model.split("\n#### UI layer ####")[0]
 
     #: UI layer code representation
-    ui_layer_code = Property(Str, depends_on=['filename', 'root'])
-    def _get_ui_layer_code(self):
+    ui_layer_code = Str
+    def _ui_layer_code_default(self):
         # change the directory temporarily to the examples root directory
         old_curdir = abspath(os.curdir)
         os.chdir(self.root)
