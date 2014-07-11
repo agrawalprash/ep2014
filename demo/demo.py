@@ -85,6 +85,7 @@ class ExamplesServer(HasTraits):
             'success_error_callbacks',
             'simple_view_web',
             'embedding_chaco',
+            'embedding_mayavi',
             'embedding_in_qt'
         ]
 

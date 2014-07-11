@@ -338,8 +338,22 @@
                         <section>
                             <h2>Demo - Interfacing with existing Qt widgets</h2>
                             <ul class='fragment'>
-                                <li>Embedding Qt widgets within Jigna</li>
-                                <li>Embedding Jigna widgets inside Qt</li>
+                                <li>
+                                    Embedding Qt widgets within Jigna
+                                    &nbsp;&nbsp;
+                                    <button class='btn'
+                                            ng-click='server.get_example("embedding_mayavi").run()'>
+                                        Demo
+                                    </button>
+                                </li>
+                                <li class='fragment'>
+                                    Embedding Jigna widgets within Qt
+                                    &nbsp;&nbsp;
+                                    <button class='btn'
+                                            ng-click='server.get_example("embedding_in_qt").run()'>
+                                        Demo
+                                    </button>
+                                </li>
                             </ul>
                         </section>
 
@@ -350,9 +364,10 @@
 
                         <!-- Slide -->
                         <section>
-                            <h2>Bonus</h2>
+                            <h2>Additional experiments</h2>
                             <ul>
-                                <li>Matplotlib on the web</li>
+                                <li>Interactive matplotlib on the web</li>
+                                <li>Mayavi on the web</li>
                                 <li>Integration with IPython notebooks</li>
                             </ul>
                         </section>
