@@ -1,5 +1,6 @@
 import imp
 import os
+from textwrap import dedent
 from bs4 import BeautifulSoup
 from subprocess import Popen
 from os.path import join, expanduser, abspath
@@ -35,15 +36,15 @@ class Example(HasTraits):
     def _get_code(self):
         return open(join(self.root, self.filename), 'r').read()
 
-    #: Domain model code representation
-    domain_model_code = Str
-    def _domain_model_code_default(self):
+    #: Python side code representation
+    python_code = Str
+    def _python_code_default(self):
         from_domain_model = self.code.split('#### Domain model ####\n')[1]
         return from_domain_model.split("\n#### UI layer ####")[0]
 
-    #: UI layer code representation
-    ui_layer_code = Str
-    def _ui_layer_code_default(self):
+    #: HTML side code representation
+    html_code = Str
+    def _html_code_default(self):
         # change the directory temporarily to the examples root directory
         old_curdir = abspath(os.curdir)
         os.chdir(self.root)
@@ -74,24 +75,260 @@ class ExamplesServer(HasTraits):
 
     examples = List(Example)
     def _examples_default(self):
-        example_ids = [
-            'simple_view',
-            'model_updates',
-            'method_call',
-            'method_call_slow',
-            'list_of_instances',
-            'instance_trait',
-            'event_trait',
-            'success_error_callbacks',
-            'simple_view_web',
-            'embedding_chaco',
-            'embedding_mayavi',
-            'embedding_in_qt'
-        ]
 
-        examples = []
-        for example_id in example_ids:
-            examples.append(Example(root=self.root, ID=example_id))
+        examples = [
+            Example(
+                root=self.root,
+                ID='simple_view',
+                python_code=dedent("""
+                    class Person(HasTraits):
+                        name = Str
+                        age = Int
+
+                    person = Person(...)
+
+                    app = QtApp(template=template,
+                                context={'person': person})
+                    app.start()
+                """),
+                html_code=dedent("""
+                    Name: <input ng-model="person.name">
+                    Age: <input ng-model="person.age">
+                """)
+            ),
+
+            Example(
+                root=self.root,
+                ID='model_updates',
+                python_code=dedent("""
+                    class MOTD(HasTraits):
+                        message = Str
+
+                        def update_message(self, message):
+                            self.message = message
+
+                    ...
+
+                    do_after(2500, motd.update_message,
+                             'Flat is better than nested')
+                """),
+                html_code=dedent("""
+                    Message of the day: {{motd.message}}
+                """)
+            ),
+
+            Example(
+                root=self.root,
+                ID='instance_trait',
+                python_code=dedent("""
+                    class Person(HasTraits):
+                        name = Str
+                        spouse = Instance(Person)
+                """),
+                html_code=dedent("""
+                    Person: {{person.name}}
+                    Spouse: {{person.spouse.name}}
+                """)
+            ),
+
+            Example(
+                root=self.root,
+                ID='list_of_instances',
+                python_code=dedent("""
+                    class Person(HasTraits):
+                        name = Str
+                        friends = List(Person)
+                """),
+                html_code=dedent("""
+                    <div ng-repeat='friend in person.friends'>
+                        {{friend.name}}
+                    </div>
+                """)
+            ),
+
+            Example(
+                root=self.root,
+                ID='method_call',
+                python_code=dedent("""
+                    class Person(HasTraits):
+                        name = Str
+                        spouse = Instance(Person)
+
+                        def greet(self):
+                            print "Hello " + self.name
+
+                        def marry(self, person):
+                            self.spouse = person
+                """),
+                html_code=dedent("""
+                    <button ng-click='person.greet()'>
+                        Greet
+                    </button>
+
+                    <button ng-click='person.marry(wilma)'>
+                        Marry
+                    </button>
+                """)
+            ),
+
+            Example(
+                root=self.root,
+                ID='method_call_slow',
+                python_code=dedent("""
+                    class Installer(HasTraits):
+                        progress = Int
+
+                        def install(self, package):
+                            while self.progress < 100:
+                                time.sleep(0.5)
+                                self.progress += 10
+                """),
+                html_code=dedent("""
+                    <button ng-click='jigna.threaded(installer, "install", pandas)'>
+                        Install Pandas
+                    </button>
+                """)
+            ),
+
+            Example(
+                root=self.root,
+                ID='event_trait',
+                python_code=dedent("""
+                    class Downloader(HasTraits):
+                        files = List
+
+                        file_downloaded = Event
+
+                        def download_all(self):
+                            for file in self.files:
+                                self.download_file(file)
+
+                                # Fire the `file_downloaded` event
+                                self.file_downloaded = file
+                """),
+                html_code=dedent("""
+                    <button ng-click='jigna.threaded(downloader, "download_all")'>
+                        Download files
+                    </button>
+
+                    <script>
+                        jigna.add_listener(downloader, 'file_downloaded', function(){
+                            ...
+                        })
+                    </script>
+                """)
+            ),
+
+            Example(
+                root=self.root,
+                ID='success_error_callbacks',
+                python_code=dedent("""
+                    class Worker(HasTraits):
+
+                        def do_work(self):
+                            time.sleep(5)
+
+                        def do_illegal_work(self):
+                            raise Exception
+                """),
+                html_code=dedent("""
+                    <script>
+                        jigna.threaded(worker, 'do_work').done(function(){
+                            $scope.status = "Done"
+                        })
+
+                        jigna.threaded(worker, 'do_illegal_work').error(function(traceback){
+                            $scope.status = "Error " + traceback
+                        })
+                    </script>
+                """)
+            ),
+
+            Example(
+                root=self.root,
+                ID='simple_view_web',
+                python_code=dedent("""
+                    class Person(HasTraits):
+                        name = Str
+                        age = Int
+
+                    person = Person(...)
+
+                    app = WebApp(template=template,
+                                 context={'person': person}, port=8000)
+                    app.start()
+                """),
+                html_code=dedent("""
+                    Name: <input ng-model="person.name">
+                    Age: <input ng-model="person.age">
+                """)
+            ),
+
+            Example(
+                root=self.root,
+                ID='embedding_mayavi',
+                python_code=dedent("""
+                    class SceneController(HasTraits):
+                        n_longitudinal = Int
+                        n_meridional = Int
+
+                        def create_scene_widget(self):
+                            ...
+                            return QWidget(...)
+
+                """),
+                html_code=dedent("""
+                    Plot:
+                    <object widget-factory='scene.create_scene_widget'
+                            type='application/x-qwidget'>
+                    </object>
+                """)
+            ),
+
+            Example(
+                root=self.root,
+                ID='embedding_in_qt',
+                python_code=dedent("""
+                    class Person(HasTraits):
+                        name = Str
+                        age = Int
+
+                    person = Person(...)
+
+                    app = QtApp(template=template,
+                                context={'person': person})
+                    qwidget = app.create_widget()
+
+                    # Do whatever you like with this qwidget
+
+                """),
+                html_code=dedent("""
+                    Name: <input ng-model="person.name">
+                    Age: <input ng-model="person.age">
+                """)
+            ),
+
+            Example(
+                root='examples',
+                ID='employee_simple',
+                python_code=dedent("""
+                    class Employee(HasTraits):
+                        name = Str
+                        salary = Int
+
+                        def update_salary(self):
+                            self.salary += int(0.2*self.salary)
+                """),
+                html_code=dedent("""
+                    Employee name is {{employee.name}}
+                    Salary is ${{employee.salary}}
+
+                    <button ng-click='employee.update_salary()'>
+                        Update salary
+                    </button>
+                """)
+            ),
+        ]
 
         return examples
 
@@ -113,10 +350,6 @@ template = Template(html_file='demo.html', recommended_size=(1400, 800))
 
 if __name__ == '__main__':
     examples_server = ExamplesServer(root=expanduser('~/work/jigna/examples'))
-
-    examples_server.examples.extend([
-        Example(root='examples', ID='employee_simple')
-    ])
 
     app = WebApp(template=template, context={'server': examples_server}, port=8001)
     app.start()
