@@ -4,7 +4,7 @@ import os
 import math
 import shutil
 from os.path import join, getsize, dirname, exists, isfile
-from traits.api import HasTraits, Str, Bool, List, Instance, Dict
+from traits.api import HasTraits, Str, Bool, Int, List, Instance, Dict, Property
 from jigna.api import Template, QtApp
 
 #### Exceptions ####
@@ -26,6 +26,10 @@ class App(HasTraits):
 
     status = Str('none')
 
+    url = Property(Str, depends_on='id')
+    def _get_url(self):
+        return join(self.id, 'main.py')
+
 #### App Actions ####
 
 class AppAction(HasTraits):
@@ -36,6 +40,8 @@ class AppAction(HasTraits):
 
     local_url = Str
 
+    progress = Int
+
     def execute(self):
         raise NotImplementedError
 
@@ -43,7 +49,7 @@ class FetchAction(AppAction):
 
     def execute(self):
         self.app.status = 'fetching'
-        app_filename = join(self.store_url, self.app.name, 'main.py')
+        app_filename = join(self.store_url, self.app.url)
 
         filesize = getsize(app_filename)
         chunk_size = int(math.ceil(filesize/100.0))
@@ -54,12 +60,13 @@ class FetchAction(AppAction):
                 if not data:
                     break
                 else:
-                    local_filename = join(self.store.LOCAL_URL, self.app.name, 'main.py')
+                    local_filename = join(self.local_url, self.app.url)
                     if not exists(dirname(local_filename)):
                         os.makedirs(dirname(local_filename))
                     with open(local_filename, 'a') as fw:
                         fw.write(data)
                     time.sleep(0.1)
+                    self.progress += int(float(chunk_size) / filesize * 100)
                     print "written", getsize(local_filename), "bytes"
         self.app.status = 'fetched'
 
@@ -76,19 +83,16 @@ class RemoveAction(AppAction):
     def execute(self):
         self.app.status = 'removing'
         time.sleep(2)
-        shutil.rmtree(join(self.local_url, self.app.name))
+        shutil.rmtree(join(self.local_url, self.app.id))
         self.app.status = 'none'
 
 class StartAction(AppAction):
 
     def execute(self):
-        self.app.status = 'starting'
         if not self.installed:
             raise AppNotInstalledException("The app %s does not exist" % self.id)
 
         print 'Starting app', self.app.name
-
-        self.app.status = 'started'
 
 #### App Manager ####
 
@@ -107,6 +111,10 @@ class AppManager(HasTraits):
     actions = Dict(Str, AppAction)
 
     def connect(self):
+        if self.connected:
+            print "Connected already"
+            return
+
         print "Trying to connect to the remote store..."
         time.sleep(4)
         if exists(self.STORE_URL):
@@ -147,9 +155,13 @@ class AppManager(HasTraits):
 
     #### Private protocol #####################################################
 
-    def _perform_action(self, app, action):
-        self.actions[app.id] = action
+    def _perform_action(self, action):
+        self.actions[action.app.id] = action
         action.execute()
+
+    def _prettify(self, str):
+        str = str.replace("_", " ")
+        return str.capitalize()
 
 def main():
     app_manager = AppManager(STORE_URL='store', LOCAL_URL='local')
