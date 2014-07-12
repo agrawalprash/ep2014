@@ -3,7 +3,7 @@ import time
 import os
 import math
 import shutil
-from os.path import join, getsize, dirname, exists, isfile
+from os.path import join, getsize, dirname, exists, isfile, basename
 from traits.api import HasTraits, Str, Bool, Int, List, Instance, Dict, Property
 from jigna.api import Template, QtApp
 
@@ -74,15 +74,23 @@ class InstallAction(AppAction):
 
     def execute(self):
         self.app.status = 'installing'
-        self.app.installed = True
-        time.sleep(2)
+        self.progress = 0
+
+        while self.progress < 100:
+            time.sleep(0.2)
+            self.progress += 10
         self.app.status = 'installed'
 
 class RemoveAction(AppAction):
 
     def execute(self):
         self.app.status = 'removing'
-        time.sleep(2)
+        self.progress = 0
+
+        while self.progress < 100:
+            time.sleep(0.2)
+            self.progress += 10
+
         shutil.rmtree(join(self.local_url, self.app.id))
         self.app.status = 'none'
 
@@ -93,6 +101,11 @@ class StartAction(AppAction):
             raise AppNotInstalledException("The app %s does not exist" % self.id)
 
         print 'Starting app', self.app.name
+        import subprocess
+        cmd = ['python', basename(self.app.url)]
+        cwd = join(self.local_url, dirname(self.app.url))
+
+        proc = subprocess.Popen(cmd, cwd=cwd)
 
 #### App Manager ####
 

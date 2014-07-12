@@ -41,7 +41,7 @@ body {
 .app-status .progress-container {
   position: relative;
   width: 90%;
-  height: 1px;
+  height: 2px;
   background-color: #eee;
   border: 1px solid #999;
   border-radius: 3px;
@@ -49,7 +49,7 @@ body {
 
 .app-status .progress-container .progress-value {
   position: absolute;
-  height: 1px;
+  height: 2px;
   background-color: #8A2;
   border-radius: 3px;
 }
