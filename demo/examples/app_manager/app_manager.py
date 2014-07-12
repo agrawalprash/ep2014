@@ -97,9 +97,6 @@ class RemoveAction(AppAction):
 class StartAction(AppAction):
 
     def execute(self):
-        if not self.installed:
-            raise AppNotInstalledException("The app %s does not exist" % self.id)
-
         print 'Starting app', self.app.name
         import subprocess
         cmd = ['python', basename(self.app.url)]
