@@ -1,0 +1,55 @@
+.absolute {
+  position: absolute;
+}
+
+.relative {
+  position: relative;
+}
+
+body {
+  margin: 20px;
+}
+
+.canopy-dash .thumbnail {
+  position: relative;
+  min-height: 140px;
+  text-align: center;
+  cursor: pointer;
+}
+
+.remove-link {
+  position: absolute;
+  right: 5px;
+  bottom: 5px;
+  color: #800;
+}
+
+.installed-app {
+  font-size: x-small;
+  line-height: 16px;
+  color: #8A2;
+}
+
+.app-status {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  margin-bottom: 14px;
+  font-size: 0.8em;
+}
+
+.app-status .progress-container {
+  position: relative;
+  width: 90%;
+  height: 1px;
+  background-color: #eee;
+  border: 1px solid #999;
+  border-radius: 3px;
+}
+
+.app-status .progress-container .progress-value {
+  position: absolute;
+  height: 1px;
+  background-color: #8A2;
+  border-radius: 3px;
+}

@@ -1,0 +1,102 @@
+<html ng-app='jigna'>
+    <head>
+        <link rel="stylesheet" href="css/bootstrap.min.css">
+        <link rel="stylesheet" href="css/app_manager.css">
+        <link rel="stylesheet" href="css/font-awesome.min.css">
+        <script type='text/javascript' src='/jigna/jigna.js'></script>
+        <script type='text/javascript'>
+            jigna.initialize();
+        </script>
+    </head>
+
+    <body>
+        <div ng-show='view.current_mode == "app_store"' class='canopy-dash'>
+            <button class='btn btn-small view-switch pull-right'
+                    ng-click='view.current_mode = "dashboard"'>
+                Go to Dashboard
+            </button>
+            <hgroup>
+                <h1>Store</h1>
+                <h4>Install new applications</h4>
+            </hgroup>
+
+            <div ng-show="!app_manager.connected">
+                <table height='80%' width='100%'>
+                    <tbody>
+                        <tr>
+                            <td align='center' valign='middle'>
+                                <img src="img/spinner.gif" /><br><br><br>
+                                Connecting to Enthought Store...
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div ng-show="app_manager.connected">
+                <ul class='thumbnails'>
+                    <li ng-repeat='app in app_manager.available_apps' class='span2'>
+                        <div class='thumbnail'>
+                            <img src="img/icon-placeholder.png" alt="{{ app.name }} Icon" width='60%'>
+                            {{ app.name }} - {{ app.version }}
+
+                            <div ng-show='app.status == "none"' class='app-status'>
+                                <button ng-click='jigna.threaded(app_manager, "install_app", app)'
+                                        class='btn btn-mini btn-info'>
+                                    Install
+                                </button>
+                            </div>
+
+                            <div ng-show='app.status == "installing"' class='app-status'>
+                                Installing... <br>
+                                <div class="progress-container">
+                                    <div class="progress-value"
+                                         style='width:{{app_manager.actions[app.id].progress}}%'>
+                                     </div>
+                                </div>
+                            </div>
+
+                            <div ng-show='app.status == "error"' class='app-status'>
+                                Error!
+                            </div>
+
+                            <div ng-show='app.status == "installed"' class='app-status'>
+                                <span class='installed-app'>Installed. <i class="fa fa-check-circle fa-2x"></i></span>
+                            </div>
+
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div ng-show='view.current_mode == "dashboard"' class='canopy-dash'>
+            <button class='btn btn-small view-switch pull-right'
+                    ng-click='view.current_mode = "app_store"; jigna.threaded(app_manager, "connect")'>
+                Go to Store
+            </button>
+            <hgroup>
+                <h1>Dashboard</h1>
+                <h4>Launch your applications</h4>
+            </hgroup>
+            <ul class='thumbnails' ng-show='app_manager.installed_apps.length'>
+                <li ng-repeat='app in app_manager.installed_apps' class='span2'>
+                    <div ng-click='app_manager.start_app(app)' class='thumbnail'>
+                        <img src="img/icon-placeholder.png" width='60%'>
+                        {{app.name}}
+                        <a ng-click='app_manager.remove_app(app)'
+                           class='remove-link'
+                           title='Warning! This will remove (uninstall) this application!'>
+                            <i class="fa fa-trash-o"></i>
+                        </a>
+                    </div>
+                </li>
+            </ul>
+
+            <p ng-show='!app_manager.installed_apps.length'>
+                You don't have any apps installed yet. Why don't you download
+                some from the store?
+            </p>
+        </div>
+    </body>
+</html>
