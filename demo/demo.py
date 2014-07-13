@@ -328,6 +328,103 @@ class ExamplesServer(HasTraits):
                     </button>
                 """)
             ),
+
+            Example(
+                root='examples/app_manager/',
+                ID='app_manager',
+                python_code=dedent("""
+                    class App(HasTraits):
+                        name = Str
+                        id = Str
+                        url = Str
+                        icon_url = Str
+
+                        status = Str('none')
+
+                    class AppAction(HasTraits):
+                        app = Instance(App)
+                        progress = Int
+
+                        def execute(self):
+                            # implement this method in subclasses
+                            pass
+
+                    class FetchAction(AppAction):
+                        ...
+
+                    class InstallAction(AppAction):
+                        ...
+
+                    class RemoveAction(AppAction):
+                        ...
+
+                    class StartAction(AppAction):
+                        ...
+
+                    class AppManager(HasTraits):
+                        connected = Bool(False)
+
+                        available_apps = List(App)
+
+                        installed_apps = List(App)
+
+                        def connect(self):
+                            # Slow operation
+                            self.connected = True
+
+                        def install_app(self, app):
+                            # Fetch app from the store
+                            FetchAction(app=app).execute()
+
+                            # Install app
+                            InstallAction(app=app).execute()
+
+                        def remove_app(self, app):
+                            # Remove app
+                            RemoveAction(app=app).execute()
+
+                        def start_app(self, app):
+                            # Start app
+                            StartAction(app=app).execute()
+                """),
+                html_code=dedent("""
+                    <!-- Dashboard view -->
+                    <div ng-repeat='app in app_manager.installed_apps'>
+                        <img ng-src='app.icon_url'/><br>
+
+                        {{app.name}}
+
+                        <button ng-click='app_manager.start_app(app)'>
+                            Start
+                        </button>
+                        ...
+                    </div>
+
+                    <!-- AppStore view -->
+                    <div ng-repeat='app in app_manager.available_apps'>
+                        <img ng-src='app.icon_url'/><br>
+
+                        {{app.name}}
+
+                        <button ng-click='jigna.threaded(app_manager, "install_app", app)'>
+                            Install
+                        </button>
+
+                        <div ng-show='app.status == "installing"'
+                             ng-init='action = app_manager.actions[app.id]'>
+                            Installing...
+
+                            <!-- Progress bar -->
+                            <div class='progress-bar-container'>
+                                <div class='progress-bar' color='green'
+                                     style='width: {{action.progress}}%'>
+                                </div>
+                            </div>
+                        </div>
+                        ...
+                    </div>
+                """)
+            ),
         ]
 
         return examples

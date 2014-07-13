@@ -102,7 +102,7 @@ class StartAction(AppAction):
         cmd = ['python', basename(self.app.url)]
         cwd = join(self.local_url, dirname(self.app.url))
 
-        proc = subprocess.Popen(cmd, cwd=cwd)
+        subprocess.Popen(cmd, cwd=cwd)
 
 #### App Manager ####
 
@@ -175,7 +175,11 @@ class AppManager(HasTraits):
 
 def main():
     app_manager = AppManager(STORE_URL='store', LOCAL_URL='local')
-    template = Template(html_file=join('gui', 'app_manager.html'), base_url='gui')
+    template = Template(
+        html_file=join('gui', 'app_manager.html'),
+        base_url='gui',
+        recommended_size=(600,500)
+    )
 
     app = QtApp(template=template, context={'app_manager': app_manager})
     app.start()
