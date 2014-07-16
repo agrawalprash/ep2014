@@ -11,6 +11,7 @@
 
 pre code {
     font-family: monospace;
+    font-size: 24px !important;
 }
 
 pre {
@@ -72,14 +73,18 @@ ul li {
 
 /* /////// Presentation Container Styles /////// */
 
+.reveal > .slides {
+    zoom: 1 !important;
+}
+
 .presentation-container {
     background-color: indianred;
 }
 
 .buzzword {
     color: #fff;
-    font-weight: bold;
-    font-size: 24px;
+    font-size: 52px !important;
+    line-height: 90px !important;
     text-shadow: darkred 0.05em -0.05em 0.125em;
     padding: 20px !important;
 }
