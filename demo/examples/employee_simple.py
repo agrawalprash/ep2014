@@ -16,14 +16,16 @@ employee = Employee(name='Tom', salary=2000)
 #### UI layer ####
 
 body_html = """
-  Employee name is {{employee.name}} <br/>
-  Salary is ${{employee.salary}} <br/>
+  <div style='font-size: 32px'>
+    Employee name is {{employee.name}} <br/>
+    Salary is ${{employee.salary}} <br/>
 
-  <button ng-click='employee.update_salary()'>
-    Update salary
-  </button>
+    <button ng-click='employee.update_salary()'>
+        UPDATE SALARY
+    </button>
+  </div>
 """
-template = Template(body_html=body_html, recommended_size=(250, 100))
+template = Template(body_html=body_html)
 
 #### Entry point ####
 
