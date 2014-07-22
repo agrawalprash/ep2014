@@ -135,7 +135,7 @@ ul li {
     color: #666;
 }
 
-.example-content .code-area {
+.example-content .code-area pre {
     font-size: 16px;
     max-height: 70%;
     overflow-y: auto;

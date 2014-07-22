@@ -340,11 +340,46 @@ class ExamplesServer(HasTraits):
                 python_code=dedent("""
                     class App(HasTraits):
                         name = Str
-                        id = Str
                         url = Str
                         icon_url = Str
-
                         status = Str('none')
+
+
+
+                    class AppManager(HasTraits):
+
+                        ### Dashboard protocol ###
+
+                        def start_app(self, app):
+                            # Start app
+                            subprocess.Popen(app.command, ...)
+
+                        ### AppStore protocol ###
+
+                        connected = Bool(False)
+                        available_apps = List(App)
+                        installed_apps = List(App)
+
+                        def connect(self):
+                            # Some slow operation
+                            time.sleep(4)
+
+                            self.connected = True
+
+                        def install_app(self, app):
+                            # Fetch app from the store
+                            FetchAction(app=app).execute()
+
+                            # Install app
+
+                        def remove_app(self, app):
+                            # Remove app
+
+
+
+
+
+
 
                     class AppAction(HasTraits):
                         app = Instance(App)
@@ -357,40 +392,8 @@ class ExamplesServer(HasTraits):
                     class FetchAction(AppAction):
                         ...
 
-                    class InstallAction(AppAction):
-                        ...
+                    ...
 
-                    class RemoveAction(AppAction):
-                        ...
-
-                    class StartAction(AppAction):
-                        ...
-
-                    class AppManager(HasTraits):
-                        connected = Bool(False)
-
-                        available_apps = List(App)
-
-                        installed_apps = List(App)
-
-                        def connect(self):
-                            # Slow operation
-                            self.connected = True
-
-                        def install_app(self, app):
-                            # Fetch app from the store
-                            FetchAction(app=app).execute()
-
-                            # Install app
-                            InstallAction(app=app).execute()
-
-                        def remove_app(self, app):
-                            # Remove app
-                            RemoveAction(app=app).execute()
-
-                        def start_app(self, app):
-                            # Start app
-                            StartAction(app=app).execute()
                 """),
                 html_code=dedent("""
                     <!-- Dashboard view -->
@@ -404,6 +407,15 @@ class ExamplesServer(HasTraits):
                         </button>
                         ...
                     </div>
+
+
+
+
+
+
+
+
+
 
                     <!-- AppStore view -->
                     <div ng-repeat='app in app_manager.available_apps'>
