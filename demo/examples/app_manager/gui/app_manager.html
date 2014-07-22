@@ -18,7 +18,7 @@
             </button>
             <hgroup>
                 <h1>Store</h1>
-                <h4>Install new applications</h4>
+                <h4 style='color:grey'>Install new applications</h4>
             </hgroup>
 
             <div ng-show="!app_manager.connected">
@@ -58,7 +58,9 @@
                             </div>
 
                             <div ng-show='app.status == "fetched"' class='app-status'>
-                                <span class='installed-app'>Fetched. <i class="fa fa-check-circle fa-2x"></i></span>
+                                <span class='installed-app'>Fetched.
+                                  <img style='height: 20px' src='img/correct-sign.png' />
+                                </span>
                             </div>
 
                             <div ng-show='app.status == "installing"' class='app-status'>
@@ -71,7 +73,9 @@
                             </div>
 
                             <div ng-show='app.status == "installed"' class='app-status'>
-                                <span class='installed-app'>Installed. <i class="fa fa-check-circle fa-2x"></i></span>
+                                <span class='installed-app'>Installed.
+                                <img style='height: 20px' src='img/correct-sign.png' />
+                                </span>
                             </div>
 
                             <div ng-show='app.status == "error"' class='app-status'>
@@ -91,7 +95,7 @@
             </button>
             <hgroup>
                 <h1>Dashboard</h1>
-                <h4>Launch your applications</h4>
+                <h4 style='color:grey'>Launch your applications</h4>
             </hgroup>
             <ul class='thumbnails' ng-show='app_manager.installed_apps.length'>
                 <li ng-repeat='app in app_manager.installed_apps' class='span2'>
@@ -107,7 +111,7 @@
                             <a ng-click='jigna.threaded(app_manager, "remove_app", app)'
                                class='remove-link'
                                title='Warning! This will remove (uninstall) this application!'>
-                                <i class="fa fa-trash-o"></i>
+                                <img style='height: 20px' src='img/remove-sign.png' />
                             </a>
                         </div>
 
