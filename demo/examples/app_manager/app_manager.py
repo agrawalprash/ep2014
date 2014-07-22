@@ -1,11 +1,12 @@
 #### Imports ####
 import time
 import os
+import sys
 import math
 import shutil
 from os.path import join, getsize, dirname, exists, isfile, basename
 from traits.api import HasTraits, Str, Bool, Int, List, Instance, Dict, Property
-from jigna.api import Template, QtApp
+from jigna.api import Template, QtApp, WebApp
 
 #### Exceptions ####
 
@@ -201,7 +202,10 @@ def main():
         recommended_size=(600,500)
     )
 
-    app = QtApp(template=template, context={'app_manager': app_manager})
+    if len(sys.argv)>1 and sys.argv[1] == 'web':
+        app = WebApp(template=template, context={'app_manager': app_manager}, port=8000)
+    else:
+        app = QtApp(template=template, context={'app_manager': app_manager})
     app.start()
 
 if __name__ == '__main__':
