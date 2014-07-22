@@ -1,0 +1,146 @@
+/* Generic styles */
+.full-width {
+    width: 100%;
+    max-width: 100%;
+}
+
+.full-height {
+  height: 100%;
+  overflow-y: auto;
+}
+
+pre code {
+    font-family: monospace;
+    font-size: 24px !important;
+}
+
+pre {
+    padding: 15px;
+    background-color: #eee;
+}
+
+h1,h2,h3,h4,h5,h6 {
+    text-transform: none !important;
+}
+
+ul li {
+    padding: 20px !important;
+}
+
+.row {
+    max-width: 100%;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.underline {
+    border-bottom: solid 2px lightgreen;
+}
+
+.no-border {
+    border: none !important;
+}
+
+/* Top bar styles */
+.top-bar {
+    background-color: black;
+    color: white;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    padding-left: 25px;
+    padding-right: 25px;
+}
+
+.top-bar .view-mode {
+    color: #bbb;
+    padding: 5px;
+}
+
+.top-bar .view-mode:hover {
+    color: #ddd;
+}
+
+.top-bar .view-mode.active {
+    color: #eee !important;
+    border-bottom: solid 2px #eee;
+}
+
+.top-bar .view-mode a {
+    color: white !important;
+
+}
+
+/* /////// Presentation Container Styles /////// */
+
+.reveal > .slides {
+    zoom: 1 !important;
+}
+
+.presentation-container {
+    background-color: indianred;
+}
+
+.buzzword {
+    color: #fff;
+    font-size: 52px !important;
+    line-height: 90px !important;
+    text-shadow: darkred 0.05em -0.05em 0.125em;
+    padding: 20px !important;
+}
+
+/* /////// Examples Container Styles /////// */
+
+/* Example listing styles */
+.example-listing {
+    padding: 25px;
+    background-color: #aaa;
+}
+
+.example-listing .heading {
+    padding-bottom: 15px !important;
+    font-size: 24px;
+    font-weight: bold;
+    color: #666;
+}
+
+.example-listing .example-entry {
+    padding-left: 5px;
+    padding-right: 5px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.example-listing .example-entry:hover {
+    cursor: pointer;
+    background-color: #ccc;
+}
+
+.example-listing .example-entry.active {
+    background-color: #eee !important;
+    font-weight: bold;
+}
+
+
+/* Example content styles */
+.example-content {
+    padding: 15px;
+}
+
+.example-content .heading {
+    padding-top: 15px;
+    padding-bottom: 15px !important;
+    font-size: 32px;
+    font-weight: bold;
+    color: #666;
+}
+
+.example-content .code-area pre {
+    font-size: 16px;
+    max-height: 70%;
+    overflow-y: auto;
+}
+
+.example-content .bottom-area {
+    padding-top: 25px;
+}

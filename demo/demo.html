@@ -1,0 +1,496 @@
+<html>
+    <head>
+        <!--  //////////// Styles /////////// -->
+
+        <!-- RevealJS styles -->
+        <link rel="stylesheet" href="css/reveal.min.css">
+        <link rel="stylesheet" href="css/theme/default.css" id="theme">
+
+        <!-- Foundation styles -->
+        <link rel='stylesheet' href='css/normalize.css' />
+        <link rel='stylesheet' href='css/foundation.css' />
+
+        <!-- Highlight styles -->
+        <link rel='stylesheet' href='css/highlight.css' />
+
+        <!-- App styles -->
+        <link rel='stylesheet' href='css/app.css' />
+
+        <!--  //////////// Scripts /////////// -->
+
+        <!-- Jigna scripts -->
+        <script type='text/javascript' src='/jigna/jigna.js'></script>
+
+        <!-- RevealJS scripts -->
+        <script type='text/javascript' src="js/head.min.js"></script>
+        <script type='text/javascript' src="js/reveal.min.js"></script>
+
+        <!-- Foundation scripts -->
+        <script type='text/javascript' src='js/modernizr.js'></script>
+        <script type='text/javascript' src='js/foundation.min.js'></script>
+
+        <!-- Highlight scripts -->
+        <script type='text/javascript' src='js/highlight.pack.js'></script>
+
+        <!-- App scripts -->
+        <script type='text/javascript' src='js/app.js'></script>
+    </head>
+
+    <body ng-app='DemoApp'>
+        <div ng-controller='DemoController'>
+
+            <!-- Top bar -->
+            <nav class='top-bar'>
+                <div class='title-area row'>
+                    <span class='title small-3 columns'>
+                        <h3 style='color: lightgrey'>Jigna</h3>
+                    </span>
+
+                    <span class='small-2 right columns'>
+                        <h5>
+                            <a class='view-mode' href="#"
+                               ng-class='{active: active_mode=="examples"}'
+                               ng-click='update_active_mode("examples");
+                               $event.preventDefault()'>
+                               Examples
+                            </a>
+                        </h5>
+                    </span>
+
+                    <span class='small-2 right columns'>
+                        <h5>
+                            <a class='view-mode' href="#"
+                               ng-class='{active: active_mode=="presentation"}'
+                               ng-click='update_active_mode("presentation");
+                               $event.preventDefault()'>
+                               Presentation
+                            </a>
+                        </h5>
+                    </span>
+                </div>
+            </nav>
+
+            <div class='presentation-container full-width full-height'
+                 ng-show='active_mode == "presentation"'>
+                <div class='reveal'>
+
+                    <!-- This is where the presentation actually starts -->
+                    <div class='slides'>
+
+                        <!-- Slide -->
+                        <section>
+                            <h1>JIGNA</h1>
+                            <h4 style='font-family: serif; font-style: italic'>
+                                Creating beautiful, live HTML UIs for Python
+                                apps
+                            </h4><br/><br/>
+                            <h2>
+                                <small>
+                                    <a href="http://github.com/agrawalprash"
+                                       style='color: lightgreen'>
+                                        Prashant Agrawal
+                                    </a>
+                                </small>
+                            </h2>
+                            <h4>
+                                <a href="http://www.enthought.com">
+                                    Enthought Inc.
+                                </a>
+                            </h4><br/><br/>
+                            <h5 style='color: #ccc'>
+                                July 2014, EuroPython - Berlin
+                            </h5>
+                        </section>
+
+                        <!-- Slide -->
+                        <section>
+                            <h2>Personal Introduction</h2>
+                            <ul>
+                                <li>
+                                    Developer at
+                                    <a href='http://www.enthought.com'>
+                                    Enthought</a> India, Mumbai since August 2012
+                                </li>
+
+                                <li class='fragment'>
+                                    Worked on
+                                    <a href='http://www.enthought.com/products/
+                                    canopy'>
+                                    Enthought Canopy </a> and
+                                    <a href='http://training.enthought.com/'>
+                                    Enthought Training on Demand </a>
+                                </li>
+
+                                <li class='fragment'>
+                                    <em>Prior:</em>
+                                    B.Tech. and M.Tech. in Aerospace Engineering
+                                    at IIT Bombay
+                                </li>
+                            </ul>
+                        </section>
+
+                        <!-- Slide -->
+                        <section>
+                            <h2>Team members</h2>
+                            <ul>
+                                <li>
+                                    <span style='color: lightgreen'>
+                                        Prabhu Ramachandran:
+                                    </span>
+                                    author of
+                                    <a href='http://code.enthought.com/projects/mayavi/'>Mayavi</a>,
+                                    professor at IIT Bombay
+                                </li>
+
+                                <li>
+                                    <span style='color: lightgreen'>
+                                        Martin Chilvers:
+                                    </span>
+                                    author of
+                                    <a href='http://code.enthought.com/projects/envisage/'>Envisage</a>,
+                                    long time Enthought developer
+                                </li>
+                            </ul>
+                        </section>
+
+                        <!-- Slide -->
+                        <section>
+                            <h2>What is Jigna?</h2>
+                            A bridge to create live, <em>HTML</em> UIs for
+                            Python apps
+
+                            <img src='img/what_is_jigna.svg'
+                                 class='full-width no-border' />
+                        </section>
+
+                        <!-- Slide -->
+                        <section>
+                            <h2>Current state of UI development in Python</h2>
+                            <ul>
+                                <li>Qt - PyQt / PySide</li>
+                                <li>wx - wxPython</li>
+                                <li>PyGTK, Tkinter, ...</li>
+                                <!-- <img src='images-boring.png' /> -->
+                            </ul>
+                        </section>
+
+                        <!-- Slide -->
+                        <section data-background='img/qt_interfaces.png'>
+                        </section>
+
+                        <!-- Slide -->
+                        <section data-background='img/qt_interfaces_darkened.png'>
+                            <div class='buzzword'>
+                                Widgets for common UI elements
+                            </div>
+
+                            <div class='fragment buzzword'>
+                                Procedural UI code
+                            </div>
+
+                            <div class='fragment buzzword'>
+                                Limited community of designers
+                            </div>
+                        </section>
+
+                        <!-- Slide -->
+                        <section>
+                            <h2>What about web apps?</h2>
+                        </section>
+
+                        <!-- Slide -->
+                        <section data-background='img/html_interfaces.png'>
+                        </section>
+
+                        <!-- Slide -->
+                        <section data-background='img/html_interfaces_darkened.png'>
+
+                            <div class='buzzword'>
+                                Very rich user interaction
+                            </div>
+
+                            <div class='fragment buzzword'>
+                                Much easier to find HTML designers
+                            </div>
+
+                            <div class='fragment buzzword'>
+                                Declarative UI code
+                            </div>
+
+                        </section>
+
+                        <!-- Slide -->
+                        <section data-background='img/bridge.png'
+                        data-background-transition="slide">
+                            <h2>What if we could bridge the gap?</h2>
+                        </section>
+
+                        <!-- Slide -->
+                        <section>
+                            <h2>Jigna</h2>
+                            <div class='row'>
+                                <div class='small-6 columns fragment'>
+                                    <pre style='height: 300px'>
+                                        <code class='python'>
+  class Employee(HasTraits):
+
+      name = Str
+      salary = Int
+
+      def update_salary(self):
+          self.salary += int(0.2*self.salary)
+
+  employee = Employee(name='Tom', salary=2000)
+                                        </code>
+                                    </pre>
+                                    Domain model
+                                </div>
+                                <div class='small-6 columns fragment'>
+                                    <pre style='height: 300px'>
+                                        <code class='html' ng-non-bindable>
+  &lt;div&gt;
+
+    Employee name is <span class='underline'>{{employee.name}}</span> &lt;br/&gt;
+    Salary is $<span class='underline'>{{employee.salary}}</span> &lt;br/&gt;
+
+    &lt;button <span class='underline'>ng-click='employee.update_salary()'</span>&gt;
+      Update salary
+    &lt;/button&gt;
+
+  &lt;/div&gt;
+                                        </code>
+                                    </pre>
+                                    UI layer
+                                </div>
+                            </div>
+                            <div class='fragment'>
+                                <button class='btn'
+                                     ng-click='server.get_example("employee_simple").run()'>
+                                    Demo
+                                </button>
+                            </div>
+                        </section>
+
+                        <!-- Slide -->
+                        <section>
+                            <h2>Things to note</h2>
+                            <ul>
+                                <li class='fragment'>
+                                    Automatic model-view binding
+                                </li>
+                                <li class='fragment'>
+                                    HTML template is live
+                                </li>
+                                <li class='fragment'>
+                                    Declarative UI code
+                                </li>
+                                <li class='fragment'>
+                                    UI can be handed off to an HTML guru
+                                </li>
+                                <li class='fragment'>
+                                    Not just for traits
+                                </li>
+                            </ul>
+                        </section>
+
+                        <!-- Slide -->
+                        <section>
+                            <h2>What it is NOT</h2>
+                            <ul>
+                                <li>Yet another UI toolkit</li>
+                                <li class='fragment'>An HTML widget library</li>
+                                <li class='fragment'>
+                                    A web framework like Django/Flask
+                                </li>
+                            </ul>
+                        </section>
+
+                        <!-- Slide -->
+                        <section data-transition='none'>
+                            <h2>How does it work?</h2>
+                            <img src='img/concept-blind.svg'
+                                 class='full-width no-border' />
+                        </section>
+
+                        <!-- Slide -->
+                        <section data-transition='none'>
+                            <h2>How does it work?</h2>
+                            <img src='img/concept-js-proxy.svg'
+                                 class='full-width no-border' />
+                        </section>
+
+                        <!-- Slide -->
+                        <section data-transition='none'>
+                            <h2>How does it work?</h2>
+                            <img src='img/mechanism-get.svg'
+                                 class='full-width no-border' />
+                        </section>
+
+                        <!-- Slide -->
+                        <section data-transition='none'>
+                            <h2>How does it work?</h2>
+                            <img src='img/mechanism-get-set.svg'
+                                 class='full-width no-border' />
+                        </section>
+
+                        <!-- App Store Demo -->
+                        <section>
+                            <h2>Demo - A dummy app store</h2>
+                            <div>
+                                <button class='btn'
+                                        ng-click='server.get_example("app_manager").run()'>
+                                    Demo
+                                </button>
+                            </div>
+                            <ul class='fragment'>
+                                <li>Proxies for primitive variables, lists,
+                                    instances
+                                </li>
+                                <li>Method call</li>
+                                <li>Async method call</li>
+                                <li>Success/Error callbacks</li>
+                                <li>Event handling</li>
+                            </ul>
+                        </section>
+
+                        <!-- Interfacing with Qt Demo -->
+                        <section>
+                            <h2>Demo - Interfacing with existing Qt widgets</h2>
+                            <ul class='fragment'>
+                                <li>
+                                    Embedding Qt widgets within Jigna
+                                    &nbsp;&nbsp;
+                                    <button class='btn'
+                                            ng-click='server.get_example("embedding_mayavi").run()'>
+                                        Demo
+                                    </button>
+                                </li>
+                                <li class='fragment'>
+                                    Embedding Jigna widgets within Qt
+                                    &nbsp;&nbsp;
+                                    <button class='btn'
+                                            ng-click='server.get_example("embedding_in_qt").run()'>
+                                        Demo
+                                    </button>
+                                </li>
+                            </ul>
+                        </section>
+
+                        <!-- Browser version Demo -->
+                        <section>
+                            <h2>Demo - Browser version (experimental)</h2>
+                        </section>
+
+                        <!-- Slide -->
+                        <section>
+                            <h2>Bonus</h2>
+                            Live IPython notebook widgets
+                            <button class='btn'
+                                    ng-click='server.get_example("ipython_notebook").run()'>
+                                Demo
+                            </button>
+                        </section>
+
+                        <!-- Slide -->
+                        <section>
+                            <h2>github.com/enthought/jigna</h2>
+                        </section>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class='examples-container row full-width full-height'
+                 ng-show='active_mode == "examples"'>
+
+                <!-- Example listing -->
+                <div class='small-2 columns example-listing full-height'>
+                    <div class='listing'>
+
+                        <div class='example-entry heading'>
+                            Examples
+                        </div>
+
+                        <div class='example-entry'
+                             ng-repeat='example in server.examples'
+                             ng-class='{active: active_example == $index}'
+                             ng-click='update_active_example($index)'>
+                            {{example.name}}
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- Example contents -->
+                <div class='small-10 columns example-contents full-height'>
+                    <div class='example-content full-height'
+                         ng-repeat='example in server.examples'
+                         ng-show='active_example == $index'>
+                        <div class='heading'>
+                            {{example.name}}
+                        </div>
+
+                        <div class='code-area row'>
+                            <div class='small-6 columns'>
+                                Python code:<br><br>
+                                <pre>
+                                    <code class='python'
+                                          highlight='example.python_code'>
+                                    </code>
+                                </pre>
+                            </div>
+
+                            <div class='small-6 columns'>
+                                HTML code:<br><br>
+                                <pre>
+                                    <code class='html'
+                                          highlight='example.html_code'>
+                                    </code>
+                                </pre>
+                            </div>
+                        </div>
+
+                        <div class='bottom-area'>
+                            <button class='btn right'
+                                    ng-click='example.run()'>
+                                Run example
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--  //////////// Post-Document Scripts /////////// -->
+
+        <!-- Jigna initialization -->
+        <script type='text/javascript'>
+            jigna.initialize()
+        </script>
+
+        <!-- RevealJS initialization -->
+        <script type='text/javascript'>
+            Reveal.initialize({
+                width: 1400,
+                height: 900,
+                controls: true,
+                progress: true,
+                history: true,
+                center: true,
+                theme: 'default',
+                transition: 'concave',
+                embedded: true
+            });
+        </script>
+
+        <!-- Foundation initialization -->
+        <script type='text/javascript'>
+            $(document).foundation();
+        </script>
+
+        <!-- Highlight initialization -->
+        <script type='text/javascript'>
+            hljs.initHighlightingOnLoad();
+        </script>
+    </body>
+</html>
