@@ -42,6 +42,11 @@ class Example(HasTraits):
         from_domain_model = self.code.split('#### Domain model ####\n')[1]
         return from_domain_model.split("\n#### UI layer ####")[0]
 
+    #: The command to run the example.
+    command = Str
+    def _command_default(self):
+        return 'python %s' % self.filename
+
     #: HTML side code representation
     html_code = Str
     def _html_code_default(self):
@@ -62,7 +67,7 @@ class Example(HasTraits):
         """
         Run the example
         """
-        cmd = ['python', self.filename]
+        cmd = self.command.split()
         Popen(cmd, cwd=self.root)
 
 class ExamplesServer(HasTraits):
@@ -424,6 +429,21 @@ class ExamplesServer(HasTraits):
                         ...
                     </div>
                 """)
+            ),
+
+            Example(
+                root=self.root,
+                ID='ipython_notebook',
+                python_code=dedent("""
+                    from jigna.utils.notebook import display_jigna
+
+                    display_jigna(context={'person': person}, template=template)
+                """),
+                html_code=dedent("""
+                    Name: {{person.name}}
+                    Age: {{person.age}}
+                """),
+                command='ipython notebook examples_notebook.ipynb'
             ),
         ]
 

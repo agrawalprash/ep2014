@@ -5,7 +5,7 @@ import math
 import shutil
 from os.path import join, getsize, dirname, exists, isfile, basename
 from traits.api import HasTraits, Str, Bool, Int, List, Instance, Dict, Property
-from jigna.api import Template, QtApp
+from jigna.api import Template, WebApp
 
 #### Exceptions ####
 
@@ -52,7 +52,7 @@ class FetchAction(AppAction):
         app_filename = join(self.store_url, self.app.url)
 
         filesize = getsize(app_filename)
-        chunk_size = int(math.ceil(filesize/100.0))
+        chunk_size = int(math.ceil(filesize/10.0))
 
         with open(app_filename, 'r') as fr:
             while True:
@@ -65,7 +65,7 @@ class FetchAction(AppAction):
                         os.makedirs(dirname(local_filename))
                     with open(local_filename, 'a') as fw:
                         fw.write(data)
-                    time.sleep(0.1)
+                    time.sleep(0.3)
                     self.progress += int(float(chunk_size) / filesize * 100)
                     print "written", getsize(local_filename), "bytes"
         self.app.status = 'fetched'
@@ -77,7 +77,7 @@ class InstallAction(AppAction):
         self.progress = 0
 
         while self.progress < 100:
-            time.sleep(0.2)
+            time.sleep(0.3)
             self.progress += 10
         self.app.status = 'installed'
 
@@ -88,7 +88,7 @@ class RemoveAction(AppAction):
         self.progress = 0
 
         while self.progress < 100:
-            time.sleep(0.2)
+            time.sleep(0.3)
             self.progress += 10
 
         shutil.rmtree(join(self.local_url, self.app.id))
@@ -201,7 +201,7 @@ def main():
         recommended_size=(600,500)
     )
 
-    app = QtApp(template=template, context={'app_manager': app_manager})
+    app = WebApp(template=template, context={'app_manager': app_manager}, port=8000)
     app.start()
 
 if __name__ == '__main__':

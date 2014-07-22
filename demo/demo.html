@@ -336,7 +336,13 @@
                         <!-- App Store Demo -->
                         <section>
                             <h2>Demo - A dummy app store</h2>
-                            <ul>
+                            <div>
+                                <button class='btn'
+                                        ng-click='server.get_example("app_manager").run()'>
+                                    Demo
+                                </button>
+                            </div>
+                            <ul class='fragment'>
                                 <li>Proxies for primitive variables, lists,
                                     instances
                                 </li>
@@ -345,12 +351,6 @@
                                 <li>Success/Error callbacks</li>
                                 <li>Event handling</li>
                             </ul>
-                            <div>
-                                <button class='btn'
-                                        ng-click='server.get_example("app_manager").run()'>
-                                    Demo
-                                </button>
-                            </div>
                         </section>
 
                         <!-- Interfacing with Qt Demo -->
@@ -384,11 +384,11 @@
                         <!-- Slide -->
                         <section>
                             <h2>Bonus</h2>
-                            <ul>
-                                <li>Live IPython notebook widgets</li>
-                                <li>Interactive matplotlib on the web</li>
-                                <li>Mayavi on the web</li>
-                            </ul>
+                            Live IPython notebook widgets
+                            <button class='btn'
+                                    ng-click='server.get_example("ipython_notebook").run()'>
+                                Demo
+                            </button>
                         </section>
 
                         <!-- Slide -->
