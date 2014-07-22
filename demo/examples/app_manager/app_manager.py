@@ -5,7 +5,7 @@ import math
 import shutil
 from os.path import join, getsize, dirname, exists, isfile, basename
 from traits.api import HasTraits, Str, Bool, Int, List, Instance, Dict, Property
-from jigna.api import Template, WebApp
+from jigna.api import Template, QtApp
 
 #### Exceptions ####
 
@@ -201,7 +201,7 @@ def main():
         recommended_size=(600,500)
     )
 
-    app = WebApp(template=template, context={'app_manager': app_manager}, port=8000)
+    app = QtApp(template=template, context={'app_manager': app_manager})
     app.start()
 
 if __name__ == '__main__':
