@@ -39,7 +39,7 @@
                     <li ng-repeat='app in app_manager.available_apps' class='span2'>
                         <div class='thumbnail'>
                             <img src="img/icon-placeholder.png" alt="{{ app.name }} Icon" width='60%'>
-                            {{ app.name }} - {{ app.version }}
+                            {{ app.name }}
 
                             <div ng-show='app.status == "none"' class='app-status'>
                                 <button ng-click='jigna.threaded(app_manager, "install_app", app)'

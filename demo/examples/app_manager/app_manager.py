@@ -117,6 +117,14 @@ class AppManager(HasTraits):
     available_apps = List(App)
 
     installed_apps = List(App)
+    def _installed_apps_default(self):
+        installed_apps = []
+        for f in os.listdir(self.LOCAL_URL):
+            if not isfile(f):
+                app = App(id=f, name=self._prettify(f), author='Enthought', status='installed')
+                installed_apps.append(app)
+
+        return installed_apps
 
     actions = Dict(Str, AppAction)
 
@@ -131,7 +139,9 @@ class AppManager(HasTraits):
             self.connected = True
             for f in os.listdir(self.STORE_URL):
                 if not isfile(f):
-                    app = App(id=f, name=self._prettify(f), author='Enthought')
+                    app = self._get_app_with_id(f, self.installed_apps)
+                    if not app:
+                        app = App(id=f, name=self._prettify(f), author='Enthought')
                     self.available_apps.append(app)
             print "Connected"
 
@@ -172,6 +182,16 @@ class AppManager(HasTraits):
     def _prettify(self, str):
         str = str.replace("_", " ")
         return str.capitalize()
+
+    def _get_app_with_id(self, id, apps):
+        """ Returns the app with the given id among the supplied list of apps
+        or None.
+        """
+        for app in apps:
+            if app.id == id:
+                return app
+
+        return None
 
 def main():
     app_manager = AppManager(STORE_URL='store', LOCAL_URL='local')
