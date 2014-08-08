@@ -104,57 +104,6 @@
 
                         <!-- Slide -->
                         <section>
-                            <h2>Personal Introduction</h2>
-                            <ul>
-                                <li>
-                                    Developer at
-                                    <a href='http://www.enthought.com'>
-                                    Enthought</a> India, Mumbai since August 2012
-                                </li>
-
-                                <li class='fragment'>
-                                    Worked on
-                                    <a href='http://www.enthought.com/products/
-                                    canopy'>
-                                    Enthought Canopy </a> and
-                                    <a href='http://training.enthought.com/'>
-                                    Enthought Training on Demand </a>
-                                </li>
-
-                                <li class='fragment'>
-                                    <em>Prior:</em>
-                                    B.Tech. and M.Tech. in Aerospace Engineering
-                                    at IIT Bombay
-                                </li>
-                            </ul>
-                        </section>
-
-                        <!-- Slide -->
-                        <section>
-                            <h2>Team members</h2>
-                            <ul>
-                                <li>
-                                    <span style='color: lightgreen'>
-                                        Prabhu Ramachandran:
-                                    </span>
-                                    author of
-                                    <a href='http://code.enthought.com/projects/mayavi/'>Mayavi</a>,
-                                    professor at IIT Bombay
-                                </li>
-
-                                <li>
-                                    <span style='color: lightgreen'>
-                                        Martin Chilvers:
-                                    </span>
-                                    author of
-                                    <a href='http://code.enthought.com/projects/envisage/'>Envisage</a>,
-                                    long time Enthought developer
-                                </li>
-                            </ul>
-                        </section>
-
-                        <!-- Slide -->
-                        <section>
                             <h2>What is Jigna?</h2>
                             A bridge to create live, <em>HTML</em> UIs for
                             Python apps
@@ -165,37 +114,7 @@
 
                         <!-- Slide -->
                         <section>
-                            <h2>Current state of UI development in Python</h2>
-                            <ul>
-                                <li>Qt - PyQt / PySide</li>
-                                <li>wx - wxPython</li>
-                                <li>PyGTK, Tkinter, ...</li>
-                                <!-- <img src='images-boring.png' /> -->
-                            </ul>
-                        </section>
-
-                        <!-- Slide -->
-                        <section data-background='img/qt_interfaces.png'>
-                        </section>
-
-                        <!-- Slide -->
-                        <section data-background='img/qt_interfaces_darkened.png'>
-                            <div class='buzzword'>
-                                Widgets for common UI elements
-                            </div>
-
-                            <div class='fragment buzzword'>
-                                Procedural UI code
-                            </div>
-
-                            <div class='fragment buzzword'>
-                                Limited community of designers
-                            </div>
-                        </section>
-
-                        <!-- Slide -->
-                        <section>
-                            <h2>What about web apps?</h2>
+                            <h2>Why HTML?</h2>
                         </section>
 
                         <!-- Slide -->
@@ -210,11 +129,11 @@
                             </div>
 
                             <div class='fragment buzzword'>
-                                Much easier to find HTML designers
+                                Full layout flexibility and the power of CSS
                             </div>
 
                             <div class='fragment buzzword'>
-                                Declarative UI code
+                                Much easier to find HTML designers
                             </div>
 
                         </section>
@@ -275,19 +194,19 @@
                         <section>
                             <h2>Things to note</h2>
                             <ul>
-                                <li class='fragment'>
+                                <li>
                                     Automatic model-view binding
                                 </li>
-                                <li class='fragment'>
+                                <li>
                                     HTML template is live
                                 </li>
-                                <li class='fragment'>
+                                <li>
                                     Declarative UI code
                                 </li>
-                                <li class='fragment'>
+                                <li>
                                     UI can be handed off to an HTML guru
                                 </li>
-                                <li class='fragment'>
+                                <li>
                                     Not just for traits
                                 </li>
                             </ul>
@@ -297,7 +216,7 @@
                         <section>
                             <h2>What it is NOT</h2>
                             <ul>
-                                <li>Yet another UI toolkit</li>
+                                <li>A new UI toolkit</li>
                                 <li class='fragment'>An HTML widget library</li>
                                 <li class='fragment'>
                                     A web framework like Django/Flask
@@ -358,18 +277,19 @@
                             <h2>Demo - Interfacing with existing Qt widgets</h2>
                             <ul class='fragment'>
                                 <li>
-                                    Embedding Qt widgets within Jigna
-                                    &nbsp;&nbsp;
-                                    <button class='btn'
-                                            ng-click='server.get_example("embedding_mayavi").run()'>
-                                        Demo
-                                    </button>
-                                </li>
-                                <li class='fragment'>
                                     Embedding Jigna widgets within Qt
                                     &nbsp;&nbsp;
                                     <button class='btn'
                                             ng-click='server.get_example("embedding_in_qt").run()'>
+                                        Demo
+                                    </button>
+                                </li>
+
+                                <li class='fragment'>
+                                    Embedding Qt widgets within Jigna
+                                    &nbsp;&nbsp;
+                                    <button class='btn'
+                                            ng-click='server.get_example("embedding_mayavi").run()'>
                                         Demo
                                     </button>
                                 </li>
